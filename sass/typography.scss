@@ -1,0 +1,23 @@
+.primary-navigation{
+  font: 21px/48px 'HUGEAvantGardeBold';
+}
+
+.secondary-navigation {
+  font: 16px/48px 'Galaxie';
+}
+
+.headline{
+  font: 120px/132px 'HUGEAvantGardeBold';
+
+  @include media-query(mobile) {
+    font: 44px/48px 'HUGEAvantGardeBold';
+  }
+}
+
+body{
+  font: 24px/36px 'Galaxie';
+
+  @include media-query(mobile) {
+    font: 14px/24px 'Galaxie';
+  }
+}

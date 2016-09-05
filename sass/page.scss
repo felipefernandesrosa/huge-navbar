@@ -1,0 +1,87 @@
+body {
+  background: #fff;
+  color: #000;
+  margin: 0;
+  overflow: hidden;
+
+  &.main-nav-opened{
+    @include media-query(mobile){
+      #page-container{
+        left: 80%;
+      }
+    }
+  }
+}
+
+a{
+  text-decoration: none;
+}
+
+#page-container{
+  position: absolute;
+  overflow: auto;
+  top: $nav-bar-height;
+  left: 0%;
+  bottom: 0;
+  width: 100%;
+  transition: left 0.3s linear;
+}
+
+section.banner {
+  width: 100%;
+  position: relative;
+
+  .banner-img{
+    background: url(../images/background-image.jpg) center;
+    background-size: cover;
+    min-height: 640px;
+
+    @include media-query(mobile) {
+      min-height: 240px;
+    }
+  }
+
+  h1 {
+    @extend .headline;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin: 0;
+    letter-spacing: -0.02em;
+    text-align: center;
+    width: 968px;
+
+    @include media-query(mobile) {
+      color: #000;
+      display: block;
+      position: relative;
+      width: auto;
+      transform: none;
+      left: 0;
+      padding: 50px 24px;
+      text-align: left;
+    }
+  }
+}
+
+section.container{
+  margin: 60px auto;
+  width: 968px;
+  text-align: justify;
+
+  @include media-query(mobile){
+    width: auto;
+    padding: 50px 24px;
+    padding-top: 0;
+    margin: 0 auto;
+
+  }
+}
+
+::selection {
+  background: $magenta;
+  color: #fff;
+}

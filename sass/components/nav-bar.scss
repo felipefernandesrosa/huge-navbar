@@ -1,0 +1,218 @@
+.overflow{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000;
+  opacity: 0;
+  transition: visibility 1s, opacity 0.3s linear;
+  visibility: hidden;
+}
+
+body.main-nav-opened{
+  .overflow{
+    opacity: 0.5;
+    visibility: visible;
+  }
+
+  #main-nav{
+    >ul{
+      @include media-query(mobile){
+        visibility: visible;
+        left: 0;
+      }
+    }
+
+    #toggle-open{
+      left: 100%;
+      margin-left: -72px;
+      background-image: url(../images/toggle-close.svg);
+    }
+    
+    .logo{
+      left: 0;
+    }
+  }
+}
+
+#main-nav{
+  height: 100%;
+
+  .nav-bar{
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    background: $nav-bar-bg;
+    width: 100%;
+    height: $nav-bar-height;
+  }
+
+  #toggle-open{
+    display: none;
+    background: url(../images/toggle-open.svg) no-repeat center;
+    width: 72px;
+    height: 72px;
+    cursor: pointer;
+
+    @include media-query(mobile){
+      display: inline-block;
+      transition: left 0.3s linear;
+      position: absolute;
+      left: 0;
+    }
+  }
+
+  .logo{
+    width: 60px;
+    height: 24px;
+    padding: 24px 48px 24px 24px;
+
+    @include media-query(mobile){
+      position: absolute;
+      transition: left 0.3s linear;
+      left: -100%;
+    }
+  }
+
+  ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  >ul{
+    @extend .primary-navigation;
+    position: absolute;
+    width: 100%;
+    margin-left: 132px;
+    line-height: $nav-bar-height;
+    z-index: 3;
+
+    @include media-query(mobile) {
+      position: absolute;
+      left: -100%;
+      margin-left: 0;
+      top: $nav-bar-height;
+      bottom: 0;
+      width: 80%;
+      overflow-y: auto;
+      visibility: hidden;
+      background: white;
+      transition: visibility 1s, left 0.3s linear;
+      padding-top: 12px;
+      line-height: 48px;
+      z-index: 2;
+
+      &::after{
+        font: 12px/16px 'Helvetica Neue Regular';
+        content: '2014 Huge. All Rights Reserved.';
+        margin-left: 24px;
+        line-height: 48px;
+      }
+    }
+
+    >li{
+      display: inline-block;
+      color: $nav-bar-color;
+      padding: 0;
+      cursor: pointer;
+      position: relative;
+
+      img{
+        display: none;
+      }
+
+      >a, >span{
+        color: $nav-bar-color;
+        display: block;
+        padding: 0 24px;
+      }
+
+      &:hover, &.opened{
+        background: $nav-bar-color;
+
+        >a, span{
+          color: $nav-bar-bg;
+        }
+      }
+
+      @include media-query(mobile){
+        display: block;
+
+        &.opened{
+          >span{
+            color: #000;
+          }
+
+          img{
+            transform: rotate(180deg);
+            transition: transform 0.1s;
+          }
+        }
+
+        img{
+          float: right;
+          width: 24px;
+          margin-top: 10px;
+          display: block;
+        }
+
+        >a, >span{
+          &:hover {
+            color: #000;
+            background: $light-gray;
+          }
+        }
+      }
+
+      ul{
+        @extend .secondary-navigation;
+        display: none;
+        overflow: hidden;
+        background: #fff;
+        padding: 12px 0;
+
+        li{
+          padding: 0 24px;
+          white-space: nowrap;
+
+          a{
+            color: #000;
+            display: block;
+          }
+
+          &:hover{
+            background: $light-gray;
+            a{
+              color: $magenta;
+            }
+          }
+        }
+      }
+
+      &.opened{
+        ul{
+          position: absolute;
+          display: block;
+          top: 100%;
+          left: 0;
+
+          @include media-query(mobile){
+            position: inherit;
+            padding: 0;
+          }
+        }
+      }
+
+      @include media-query(mobile){
+        color: #000;
+
+        >a, >span{
+          color: #000;
+        }
+      }
+
+    }
+  }
+}
